@@ -51,24 +51,18 @@ table {
 
 #box {
 	position: relative;
+	margin-bottom: 100px;
 }
 
 #slider {
-	overflow: hidden;
 	border:1px solid #666666;
 	width: 200px;
-}
-
-#slider ul {
-	position: relative;
-	width: 9000000px;
+	height: 200px;
 }
 
 #slider ul li{
-	position: relative;
-	float: left;
 	display: block;
-	margin: 5px;
+	border:2px solid #666666;
 	background-color: #CCCCCC;
 	height: 200px;
 	width: 400px;
@@ -88,7 +82,7 @@ table {
 	position: absolute;
 	left: 0px;
 	cursor: pointer;
-	top: 250px;
+	bottom: -20px;
 	color: #666666;
 }
 
@@ -98,4 +92,19 @@ table {
 
 #controls .active, #controls span:HOVER{
 	color: #0066FF;
+}
+
+
+#slider2 {
+	border:1px solid #666666;
+	width: 200px;
+	height: 200px;
+}
+
+#slider2 ul li{
+	display: block;
+	border:2px solid #666666;
+	background-color: #CCCCCC;
+	height: 200px;
+	width: 400px;
 }
