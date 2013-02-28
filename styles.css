@@ -52,6 +52,7 @@ table {
 #box {
 	position: relative;
 	margin-bottom: 100px;
+	margin-top: 30px;
 }
 
 #slider {
@@ -68,26 +69,55 @@ table {
 	width: 400px;
 }
 
-#buttons span{
-	margin: 0 10px;
-	cursor: pointer;
+ul li img{
+	height: 200px;
+	width: 400px;
 }
 
-#buttons .active, #buttons span:HOVER{
-	color: #FF6600;
+
+#buttons span{
+	display: block;
+	float: left;
+	margin: 0 5px;
+	cursor: pointer;
+	background-image: url('img/point.png');
+	height: 24px;
+	width: 24px;
+}
+
+#buttons .active{
+	background-position: 0 -48px;
+}
+
+#buttons span:HOVER{
+	background-position: 0 -24px;
 }
 
 .prev, .next {
 	display: block;
 	position: absolute;
 	left: 0px;
-	cursor: pointer;
-	bottom: -20px;
+	bottom: -80px;
 	color: #666666;
+	background-image: url('img/arrow.png');
+	height: 50px;
+	width: 50px;
+	background-position: 0 -100px;
 }
 
 .next {
 	left: 100px;
+	background-position: 0 -150px;
+}
+
+.next.active{
+	background-position: 0 -50px;
+	cursor: pointer;
+}
+
+.prev.active{
+	background-position: 0 0px;
+	cursor: pointer;
 }
 
 #controls .active, #controls span:HOVER{

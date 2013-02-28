@@ -16,9 +16,13 @@ var defaultSettings = {
         viewbuttons         : true,
         idArrows            : "controls",
         idButtons           : "buttons",
-        buttonPrev          : "<span class='prev'>prev</span>",
-        buttonNext          : "<span class='next'>next</span>",
-        button              : "<span>#</span>"
+        buttonPrev          : "<span class='prev'></span>",
+        buttonNext          : "<span class='next'></span>",
+        button              : "<span></span>",
+        before              : null,
+        after               : null,
+        onInit              : null,
+        onDestroy           : null
     };
 
     var methods = {
@@ -38,6 +42,9 @@ var defaultSettings = {
         
             var n = numberElements - op.numberviewelements;
 
+        if(typeof op.onInit == 'function') {
+            op.onInit();
+        }
 
         if(op.viewarrows){
         var controls = $('<span>', {
@@ -141,15 +148,11 @@ var defaultSettings = {
                 }
             }
         }
-
-
-        
+    
         function moveBox () {
-            // if(op.vertical){
-            //     setTop();
-            // }else{
-            //     setLeft();
-            // }
+            if(typeof op.before == 'function') {
+                op.before();
+            }
 
             op.vertical ? setTop() : setLeft();
         }
@@ -177,6 +180,10 @@ var defaultSettings = {
         function redrawControls() {
             if(op.viewarrows){ drawArrows();}
             if(op.viewbuttons){drawActivButton();}
+
+            if(typeof op.after == 'function') {
+                op.after();
+            }
         }
 
         function setWidth (w) {
@@ -188,18 +195,7 @@ var defaultSettings = {
         }
 
         function drawArrows () {
-            // if(op.viewelement == 0){
-            //     prev.removeClass("active");
-            // }else{
-            //     prev.addClass("active");
-            // }
             op.viewelement == 0 ? prev.removeClass("active") : prev.addClass("active");
-
-            // if(op.viewelement == n){
-            //     next.removeClass("active");
-            // }else{
-            //     next.addClass("active");
-            // }
             op.viewelement == n ? next.removeClass("active") : next.addClass("active");
         }
 
@@ -221,35 +217,20 @@ var defaultSettings = {
 
             return this.bind({
 
-                'mousedown.SPlayer': function(event){
-
+                'mousedown.TheBestOfTheBestSlider': function(event){
+                    console.log('down');
                 },
-                'mouseup.SPlayer': function(event){
-
-                },
-                'mouseenter.SPlayer': function(event){
-
-                },
-                'mouseleave.SPlayer': function(event){
-
-                },
-                'mousemove.SPlayer': function(event){
-
+                'mouseup.TheBestOfTheBestSlider': function(event){
+                        console.log('up');
                 }
-
             });
-
         },
 
         Destroy: function(){
 
             this.unbind('.TheBestOfTheBestSlider');
-
         }
-
     };
-
-
 
     $.fn.TheBestOfTheBestSlider = function(method){
 
@@ -265,23 +246,34 @@ var defaultSettings = {
 
     };
 
-
-
-
 })( jQuery );
 
-
 var s1 = $("#slider").TheBestOfTheBestSlider({
-      'numberviewelements'  :3,
-      'moveCount'           :1,
-      'auto'                :true,
-      'viewarrows'          :false
+      numberviewelements  :2,
+      moveCount           :2
     });
 
 var s2 = $("#slider2").TheBestOfTheBestSlider({
-      'numberviewelements'  :2,
-      'vertical'            :true
+      'numberviewelements' :1,
+      'vertical'           :true,
+      'viewarrows'         :false,
+      auto                 :true,
+      onInit               :function() {
+          console.log('start')
+      },
+      before               :function() {
+          console.log('before')
+      },
+      after                :function() {
+          console.log('after')
+      }
+
     });
+
+//s2.TheBestOfTheBestSlider('Destroy');
+
+
+
 
       // 'numberviewelements'  : 1,
       // 'viewelement'         : 0,
