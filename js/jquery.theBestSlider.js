@@ -145,11 +145,13 @@ var defaultSettings = {
 
         
         function moveBox () {
-            if(op.vertical){
-                setTop();
-            }else{
-                setLeft();
-            }
+            // if(op.vertical){
+            //     setTop();
+            // }else{
+            //     setLeft();
+            // }
+
+            op.vertical ? setTop() : setLeft();
         }
 
         function setLeft () {
@@ -186,17 +188,19 @@ var defaultSettings = {
         }
 
         function drawArrows () {
-            if(op.viewelement == 0){
-                prev.removeClass("active");
-            }else{
-                prev.addClass("active");
-            }
+            // if(op.viewelement == 0){
+            //     prev.removeClass("active");
+            // }else{
+            //     prev.addClass("active");
+            // }
+            op.viewelement == 0 ? prev.removeClass("active") : prev.addClass("active");
 
-            if(op.viewelement == n){
-                next.removeClass("active");
-            }else{
-                next.addClass("active");
-            }
+            // if(op.viewelement == n){
+            //     next.removeClass("active");
+            // }else{
+            //     next.addClass("active");
+            // }
+            op.viewelement == n ? next.removeClass("active") : next.addClass("active");
         }
 
         function drawButton () {
@@ -234,15 +238,6 @@ var defaultSettings = {
                 }
 
             });
-
-        },
-
-        RotateTo: function(newPosition){
-
-        },
-
-        GetCurrentAngle: function(){
-
 
         },
 
